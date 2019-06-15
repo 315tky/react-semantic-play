@@ -6,6 +6,7 @@ class TableListing extends React.Component {
 
   render() {
     const {name, age, id, created_at, updated_at} = this.props.users[0]
+console.log(this.props.users)
     return (
   <div>
     <Table color='yellow' collapsing celled>
@@ -15,14 +16,7 @@ class TableListing extends React.Component {
        </Table.Row>
      </Table.Header>
      <Table.Body>
-       <Table.Row>
-         <Table.Cell>{id}</Table.Cell>
-         <Table.Cell>{name}</Table.Cell>
-         <Table.Cell>{age}</Table.Cell>
-         <Table.Cell>{created_at}</Table.Cell>
-         <Table.Cell>{updated_at}</Table.Cell>
-         <Table.Cell><ButtonDemo/></Table.Cell>
-       </Table.Row> 
+       {this.TableRow()}
     </Table.Body>
     </Table>
   </div>
@@ -38,9 +32,19 @@ class TableListing extends React.Component {
     })
   }
 
-  TableData() { 
-   } 
-
-
+  TableRow() { 
+    let rows = this.props.users
+    return rows.map((row, index) => {
+      return ( <Table.Row>
+                 <Table.Cell>{row.id}</Table.Cell>
+                 <Table.Cell>{row.name}</Table.Cell>
+                 <Table.Cell>{row.age}</Table.Cell>
+                 <Table.Cell>{row.created_at}</Table.Cell>
+                 <Table.Cell>{row.updated_at}</Table.Cell>
+                 <Table.Cell>{<ButtonDemo/>}</Table.Cell>
+               </Table.Row> )
+    })
+  } 
+ 
 }
 export default TableListing
