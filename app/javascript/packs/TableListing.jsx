@@ -14,11 +14,7 @@ constructor(props) {
       return {id: id, checked: false};
     })
   };
-//  console.log(this.props.users);
-//  console.log(this.state.checkboxes);
 }
-
-
 // note - need exception table,
 // join to problem table,
 // send that as data to frontend
@@ -27,13 +23,7 @@ constructor(props) {
 // changes and that gets submitted.
   render() {
     const {name, age, id, created_at, updated_at} = this.props.users[0]
-//console.log(this.props.users)
-//console.log(state);
-//let tableData = this.props.users.map(function(item) {
-//  item.chkbox_status = false;
-//  return item;
-//});
-//console.log(tableData);
+
     return (
   <div>
     <Form onSubmit={this.handleFormSubmit}>
@@ -58,7 +48,7 @@ constructor(props) {
     )
   }
 
-    onToggle(user_id, e) {
+  onToggle(user_id, e) {
       this.setState(prevState => ({
         checkboxes: prevState.checkboxes.map(
         obj => (obj.id === user_id ? Object.assign(obj, { checked: !obj.checked }) : obj)
@@ -67,15 +57,28 @@ constructor(props) {
         console.log(this.state.checkboxes)
     }
 
-  //  }))
-
-  //  console.log(index)
-  //}
-
   handleFormSubmit = (formSubmitEvent) => {
     formSubmitEvent.preventDefault();
     console.log("submit fired")
-  }
+    console.log(this.state.checkboxes)
+    const url = `/home/create`
+    fetch(url, {
+      method: 'POST',
+      body: JSON.stringify({
+        exceptions: { checkboxes: this.state.checkboxes }
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+      },
+      credentials: 'include'
+    }).then(res => res.json())
+     .then(response => {
+         //this.setState({ text:'', severity: 6, disabled: false })
+         console.log('submitted')
+       })
+       .catch(error => console.error('Error:', error))
+ }
 
   tableHeaders() {
     let first = this.props.users[0]
