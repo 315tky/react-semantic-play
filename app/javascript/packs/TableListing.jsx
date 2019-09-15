@@ -9,14 +9,15 @@ class TableListing extends React.Component {
 constructor(props) {
   super(props);
   this.state = {
-    users: this.props.users.map(function(x) {
+    checkboxes: this.props.users.map(function(x) {
       let id = x.id
-      console.log(x.id);
-      return {[id]: false};
-    }),
-    checked: true
+      return {id: id, checked: false};
+    })
   };
+//  console.log(this.props.users);
+//  console.log(this.state.checkboxes);
 }
+
 
 // note - need exception table,
 // join to problem table,
@@ -57,34 +58,19 @@ constructor(props) {
     )
   }
 
+    onToggle(user_id, e) {
+      this.setState(prevState => ({
+        checkboxes: prevState.checkboxes.map(
+        obj => (obj.id === user_id ? Object.assign(obj, { checked: !obj.checked }) : obj)
+        )
+      }))
+        console.log(this.state.checkboxes)
+    }
 
+  //  }))
 
-//  handleCheckboxChange = changeEvent => {
-//    const { name } = changeEvent.target;
-//    console.log(name);
-//   this.setState({
-  //  new_users: changeEvent.target.value
-  //  });
-//  }
-//    this.setState(prevState => ({
-  //    checkboxes: {
-//        ...prevState.checkboxes,
-//        [name]: !prevState.checkboxes[name]
-//      }
-//    }));
-//}
-
-  toggleCheckBox = () => {
-    console.log("hello")
-    //const checkBoxStatus = !(this.state.checked)
-    //this.setState({checkBoxStatus});
-    this.setState(prevState => ({
-      checked: !prevState.checked
-    }))
-    console.log(this.state.checked)
-    //console.log({checkBoxStatus})
- }
-
+  //  console.log(index)
+  //}
 
   handleFormSubmit = (formSubmitEvent) => {
     formSubmitEvent.preventDefault();
@@ -101,15 +87,15 @@ constructor(props) {
   }
 
   tableRow() {
-    let rows = this.props.users
-    return rows.map((row, index) => {
+    let users = this.props.users
+    return users.map((user, index) => {
       return ( <Table.Row key={index}>
-                 <Table.Cell>{row.id}</Table.Cell>
-                 <Table.Cell>{row.name}</Table.Cell>
-                 <Table.Cell>{row.age}</Table.Cell>
-                 <Table.Cell>{row.created_at}</Table.Cell>
-                 <Table.Cell>{row.updated_at}</Table.Cell>
-                 <Table.Cell>{<Checkbox  onChange={this.toggleCheckBox} index={index}/>}</Table.Cell>
+                 <Table.Cell>{user.id}</Table.Cell>
+                 <Table.Cell>{user.name}</Table.Cell>
+                 <Table.Cell>{user.age}</Table.Cell>
+                 <Table.Cell>{user.created_at}</Table.Cell>
+                 <Table.Cell>{user.updated_at}</Table.Cell>
+               <Table.Cell><Checkbox onChange={this.onToggle.bind(this, user.id)}/></Table.Cell>
                </Table.Row> )
     })
   }
