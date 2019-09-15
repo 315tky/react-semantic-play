@@ -1,3 +1,65 @@
 get users spread into rows
 get checkbox in place of button
 get state of checked boxes passed back to rails when user 'submits'
+
+reduce the data into state of the TableComponent ?
+
+something like this ? :
+
+class App extends Component {
+  state = {
+    checkboxes: OPTIONS.reduce(
+      (options, option) => ({
+        ...options,
+        [option]: false
+      }),
+      {}
+    )
+  };
+
+
+need to read and understand and remind how .reduce works, ( what is the "(options, option) and [option]: false <-- This seems to be setting a default option to false ( unchecked ).
+
+In the handFormSubmit - call the keys, and get the checkbox state:
+
+handleFormSubmit = formSubmitEvent => {
+    formSubmitEvent.preventDefault();
+
+    Object.keys(this.state.checkboxes)
+      .filter(checkbox => this.state.checkboxes[checkbox])
+      .forEach(checkbox => {
+        console.log(checkbox, "is selected.");
+      });
+  };
+
+
+need to change the CheckBox component to something like the below :
+
+createCheckbox = option => (
+    <Checkbox
+      label={option}
+      isSelected={this.state.checkboxes[option]}
+      onCheckboxChange={this.handleCheckboxChange}
+      key={option}
+    />
+  );
+
+This is the "call back" (?) from the onCheckboxChange shown above :
+
+handleCheckboxChange = changeEvent => {
+    const { name } = changeEvent.target;
+
+    this.setState(prevState => ({
+      checkboxes: {
+        ...prevState.checkboxes,
+        [name]: !prevState.checkboxes[name]
+      }
+    }));
+  };
+
+
+
+
+
+
+
