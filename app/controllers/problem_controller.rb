@@ -1,6 +1,7 @@
-class HomeController < ApplicationController
+class ProblemController < ApplicationController
   def index
     @problems = Problem.all
+    render json: @problems
   end
 
   def create

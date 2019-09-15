@@ -3,6 +3,7 @@ import { Table } from 'semantic-ui-react'
 import ButtonDemo from './ButtonDemo'
 import { Checkbox } from 'semantic-ui-react'
 import { Form } from 'semantic-ui-react'
+import { Pagination } from 'semantic-ui-react'
 
 class TableListing extends React.Component {
 
@@ -43,6 +44,7 @@ constructor(props) {
         </Table.Footer>
       </Table>
     </Form>
+    <Pagination totalPages={10}/>
   </div>
     )
   }
@@ -95,7 +97,6 @@ constructor(props) {
                  <Table.Cell>{problem.id}</Table.Cell>
                  <Table.Cell>{problem.detail}</Table.Cell>
                  <Table.Cell>{problem.category}</Table.Cell>
-                 <Table.Cell>{problem.exemption}</Table.Cell>
                  <Table.Cell>{problem.created_at}</Table.Cell>
                  <Table.Cell>{problem.updated_at}</Table.Cell>
                <Table.Cell><Checkbox onChange={this.onToggle.bind(this, problem.id)}/></Table.Cell>

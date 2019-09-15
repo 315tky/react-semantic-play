@@ -1,0 +1,9 @@
+<h1>Demo table with checkbox controlled form</h1>
+
+<%= content_tag :div,
+  id: "problem_data",
+  data: @problems.to_json do %>
+<% end %>
+    <%= javascript_pack_tag 'App' %>
+    <%= stylesheet_pack_tag 'App' %>
+

@@ -14,6 +14,7 @@ ActiveRecord::Schema.define(version: 2019_09_18_092512) do
 
   create_table "exemptions", force: :cascade do |t|
     t.integer "user_id"
+    t.integer "problem_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -21,7 +22,6 @@ ActiveRecord::Schema.define(version: 2019_09_18_092512) do
   create_table "problems", force: :cascade do |t|
     t.string "detail"
     t.string "category"
-    t.integer "exemption_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
