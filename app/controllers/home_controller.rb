@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-    @problems = Problem.joins(:exemption).where('problem_id != ?',nil)
+    @problems = Problem.all
   end
 
   def create
