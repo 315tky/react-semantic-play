@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_18_092512) do
+ActiveRecord::Schema.define(version: 2019_09_21_121039) do
 
   create_table "exemptions", force: :cascade do |t|
     t.integer "user_id"
     t.integer "problem_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "problem_id"
   end
 
   create_table "problems", force: :cascade do |t|

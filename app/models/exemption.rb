@@ -10,5 +10,4 @@ class Exemption < ApplicationRecord
       end
     end
   end
-
 end

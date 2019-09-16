@@ -23,7 +23,8 @@ constructor(props) {
 // as the state that the checkbox
 // changes and that gets submitted.
   render() {
-    const {name, age, id, created_at, updated_at} = this.props.problems[0]
+
+    const {category, created_at, detail, id, updated_at} = this.props.problems[0]
 
     return (
   <div>
