@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  resources :problem
-  resources :home
-#  get 'problem/index'
-  root 'problem#index'
-  post 'home/create'
+#  resources :problem
+#  resources :home
+  root 'home#index'
   get 'home/index'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  get 'problem/index'
+  post 'problem/create'
 end

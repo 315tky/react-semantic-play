@@ -14,5 +14,22 @@
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+//console.log('Hello World from Webpacker')
+// Run this example by adding <%= javascript_pack_tag 'hello_react' %> to the head of your layout file,
+// like app/views/layouts/application.html.erb. All it does is render <div>Hello React</div> at the bottom
+// of the page.
 
-console.log('Hello World from Webpacker')
+import React from 'react'
+import ReactDOM from 'react-dom'
+import PropTypes from 'prop-types'
+import Home from '../app/Home'
+import '../../../dist/semantic.min.css';
+
+document.addEventListener('DOMContentLoaded', () => {
+  const node = document.getElementById('problem_data')
+  const data = JSON.parse(node.getAttribute('data')) 
+  ReactDOM.render(
+    <Home problems={data}/>,
+    document.body.appendChild(document.createElement('div')),
+  )
+})

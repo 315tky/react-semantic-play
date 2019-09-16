@@ -5,7 +5,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
-import TableListing from './TableListing'
+import TableListing from '../app/TableListing'
 import '../../../dist/semantic.min.css';
 
 document.addEventListener('DOMContentLoaded', () => {
