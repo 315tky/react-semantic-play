@@ -1,7 +1,7 @@
 import React from 'react'
 import { Table } from 'semantic-ui-react'
 import ButtonDemo from './ButtonDemo'
-import CheckBox from './CheckBox'
+import { Checkbox } from 'semantic-ui-react'
 import { Form } from 'semantic-ui-react'
 
 class TableListing extends React.Component {
@@ -13,17 +13,11 @@ constructor(props) {
       let id = x.id
       console.log(x.id);
       return {[id]: false};
-    })
-  // checkboxes: this.props.users.reduce(
-  //   (ids, id) => ({
-//      ...ids,
-//      [id]: false
-//     }),
-//     {}
-//   )
+    }),
+    checked: true
   };
-console.log(this.state);
 }
+
 // note - need exception table,
 // join to problem table,
 // send that as data to frontend
@@ -64,11 +58,6 @@ console.log(this.state);
   }
 
 
-  toggleCheckBox = () => { 
-    const checkBoxStatus = !(this.state.checkBoxStatus)
-    this.setState({checkBoxStatus});
-    console.log(checkBoxStatus)
-  }
 
 //  handleCheckboxChange = changeEvent => {
 //    const { name } = changeEvent.target;
@@ -84,6 +73,17 @@ console.log(this.state);
 //      }
 //    }));
 //}
+
+  toggleCheckBox = () => {
+    console.log("hello")
+    //const checkBoxStatus = !(this.state.checked)
+    //this.setState({checkBoxStatus});
+    this.setState(prevState => ({
+      checked: !prevState.checked
+    }))
+    console.log(this.state.checked)
+    //console.log({checkBoxStatus})
+ }
 
 
   handleFormSubmit = (formSubmitEvent) => {
@@ -109,7 +109,7 @@ console.log(this.state);
                  <Table.Cell>{row.age}</Table.Cell>
                  <Table.Cell>{row.created_at}</Table.Cell>
                  <Table.Cell>{row.updated_at}</Table.Cell>
-                 <Table.Cell>{<CheckBox index={index}/>}</Table.Cell>
+                 <Table.Cell>{<Checkbox  onChange={this.toggleCheckBox} index={index}/>}</Table.Cell>
                </Table.Row> )
     })
   }
