@@ -10,10 +10,10 @@ import TableListing from './TableListing'
 import '../../../dist/semantic.min.css';
 
 document.addEventListener('DOMContentLoaded', () => {
-  const node = document.getElementById('user_data')
+  const node = document.getElementById('problem_data')
   const data = JSON.parse(node.getAttribute('data')) 
   ReactDOM.render(
-    <TableListing users={data}/>,
+    <TableListing problems={data}/>,
     document.body.appendChild(document.createElement('div')),
   )
 })

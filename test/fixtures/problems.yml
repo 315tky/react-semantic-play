@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  detail: MyString
+  category: MyString
+  exemption_id: 1
+
+two:
+  detail: MyString
+  category: MyString
+  exemption_id: 1
