@@ -22,7 +22,8 @@ constructor(props) {
 // as the state that the checkbox
 // changes and that gets submitted.
   render() {
-    const {name, age, id, created_at, updated_at} = this.props.problems[0]
+
+    const {category, created_at, detail, id, updated_at} = this.props.problems[0]
 
     return (
   <div>
@@ -95,7 +96,6 @@ constructor(props) {
                  <Table.Cell>{problem.id}</Table.Cell>
                  <Table.Cell>{problem.detail}</Table.Cell>
                  <Table.Cell>{problem.category}</Table.Cell>
-                 <Table.Cell>{problem.exemption}</Table.Cell>
                  <Table.Cell>{problem.created_at}</Table.Cell>
                  <Table.Cell>{problem.updated_at}</Table.Cell>
                <Table.Cell><Checkbox onChange={this.onToggle.bind(this, problem.id)}/></Table.Cell>
